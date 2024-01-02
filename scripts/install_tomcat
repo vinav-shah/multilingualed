@@ -2,4 +2,4 @@
 yum clean all
 amazon-linux-extras install tomcat8.5=8.5.50
 alternatives --set java  /usr/lib/jvm/java-11-amazon-corretto.x86_64/bin/java
-mv /home/ec2-user/javaapp/sensors-0.0.1-SNAPSHOT.jar /var/lib/tomcat/webapps/
+mv /home/ec2-user/javaapp/extractx-0.0.1-SNAPSHOT.jar /var/lib/tomcat/webapps/
