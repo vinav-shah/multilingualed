@@ -1,0 +1,5 @@
+#!/bin/bash
+#service tomcat start
+#service httpd start
+#mvn spring-boot:run
+#java -jar /home/ec2-user/javaapp/sensors-0.0.1-SNAPSHOT.jar
