@@ -1,0 +1,20 @@
+version: 0.0
+os: linux
+files:
+  - source: target/extractx-0.0.1-SNAPSHOT.jar
+    destination: /home/ec2-user/javaapp
+  - source: /scripts/requirements.txt
+    destination: /home/ec2-user/scripts
+hooks:
+  AfterInstall:
+    - location: scripts/install_java
+      timeout: 300
+      runas: root
+  ApplicationStart:
+    - location: scripts/start_server
+      timeout: 300
+      runas: root
+  ApplicationStop:
+    - location: scripts/stop_server
+      timeout: 300
+      runas: root

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
+    <title>Multilingual Editions</title>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+          integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</head>
+
+<body>
+<div th:replace="fragments/header :: header"></div>
+<br>
+<div class="container">
+
+    <div class="row"> <!-- Start of Bootstrap row -->
+
+        <!-- Column for the table and other content -->
+        <div class="col-md-8" style="max-width: 600px; margin: 0 auto;">
+        <h4 class="mb-3">Books Read in Familiar Voices </h4>
+            <p>
+                Welcome to a unique listening experience! <br/><br/>
+            Here, stories come alive not just in any voice, but in the comforting and familiar tones of your loved ones.
+            </p>
+            <body>
+           The Emperor's clothes story in my voice:<br><br>
+            <audio controls>
+                <source th:src="@{VinavsVoiceEmperorClothes.mp3}" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            </body>
+
+        </div>
+    </div>
+</div>
+<br><br>
+</body>
+
+</html>

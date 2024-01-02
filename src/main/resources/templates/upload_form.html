@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
+    <title>Multilingual Editions</title>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+          integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</head>
+
+<body>
+<div th:replace="fragments/header :: header"></div>
+<br>
+<div class="container">
+
+    <div class="row"> <!-- Start of Bootstrap row -->
+
+        <!-- Column for the table and other content -->
+        <div class="col-md-8" style="max-width: 600px; margin: 0 auto;">
+        <h4 class="mb-3">Upload books to translate </h4>
+
+    <form
+            id="uploadForm"
+            method="post"
+            th:action="@{/files/upload}"
+            enctype="multipart/form-data">
+        <input id="input-file" type="file" name="file" />
+        <button class="btn btn-sm btn-outline-success float-center" type="submit">
+            Upload
+        </button>
+    </form>
+
+    <div
+            th:if="${message != null}"
+            class="alert alert-secondary alert-dismissible fade show text-center message mt-3"
+            role="alert">
+        [[${message}]]
+        <button type="button" class="close btn-sm" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+        </div>
+    </div>
+</div>
+<br><br>
+</body>
+
+</html>

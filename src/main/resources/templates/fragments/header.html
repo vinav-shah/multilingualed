@@ -1,0 +1,20 @@
+<header th:fragment="header" xmlns:th="http://www.w3.org/1999/xhtml">
+    <nav class="navbar" style="background-color: #add8e6;">
+        <a class="navbar" th:href="@{/files}">
+            Multilingual Editions
+        </a>
+
+        <!-- No need for the toggler button, so it's removed -->
+        <div id="topNavbar"> <!-- Removed the 'collapse' and 'navbar-collapse' classes -->
+            <ul class="navbar-nav navbar-expand-lg">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/files/new}">Upload Books</a>
+                </li>
+                    &nbsp; &nbsp; &nbsp;
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/files}">My Books</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>

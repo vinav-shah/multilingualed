@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
+    <title>Multilingual Editions Login</title>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+          integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+    <!-- Additional styling to ensure proper alignment and sizing -->
+    <style>
+        .flex-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 40px); /* Adjust height to account for footer */
+        }
+
+        .flex-item {
+            margin: 10px;
+        }
+
+        .img-fluid {
+            max-width: 70%; /* Make the photo 30% smaller */
+            height: auto;
+        }
+
+        .footer {
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-top: 1px solid #e7e7e7;
+        }
+    </style>
+</head>
+
+<body>
+<div class="flex-container">
+    <!-- Column for the image -->
+    <div class="flex-item">
+        <img src="multilingual.png" alt="Bonding without linguistic barriers" class="img-fluid">
+    </div>
+
+    <!-- Column for the login form -->
+    <div class="flex-item">
+        <h1>Multilingual Editions</h1>
+        <h2>Login Form</h2>
+        <form th:action="@{/postlogin}" method="post">
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" />
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" />
+            </div>
+            <div>
+                <button type="submit">Login</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="footer">
+    For access to the beta version of this application, please contact us at <a href="mailto:vinavs@gmail.com">vinavs@gmail.com</a>.
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
+    <title>Multilingual Editions</title>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+          integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+</head>
+
+<body>
+<div th:replace="fragments/header :: header"></div>
+<br>
+<div class="container-fluid">
+    <h4 class="text-center">Translate My Books</h4>
+
+<br>
+    <div class="row"> <!-- Start of Bootstrap row -->
+
+        <!-- Column for the image -->
+        <div class="col-md-4 text-center">
+            <img src="multilingual.png" alt="Bonding without linguistic barriers" class="img-fluid">
+        </div>
+
+        <!-- Column for the table and other content -->
+        <div class="col-md-8">
+            <div th:if="${files.size() > 0}">
+                <table class="table table-hover">
+                    <thead class="thread-light">
+                    <tr>
+                        <th scope="col">Book Attachment</th>
+                        <th scope="col">&nbsp; &nbsp;Source Language &nbsp; &nbsp; &nbsp; &nbsp;Translation Language </th>
+                        <th scope="col">Word List</th>
+                        <th scope="col">Braille</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="file : ${files}">
+                        <td>[[${file.name}]]
+                        <a th:href="@{${file.url}}" class="fa fa-download"> </a>
+                        &nbsp;
+                        </td>
+                        <td>
+                            <form th:action="@{/files/translate/language}" method="get">
+                            <select class="form-select form-select-sm" id="language" name="language">
+                                <option value="">Source language</option>
+                                <option th:value="en">English</option>
+                                <option th:value="zh">Chinese (Simplified)</option>
+                                <option th:value="zh-TW">Chinese (Traditional)</option>
+                                <option th:value="fr">French</option>
+                                <option th:value="de">German</option>
+                                <option th:value="el">Greek</option>
+                                <option th:value="hi">Hindi</option>
+                                <option th:value="it">Italian</option>
+                                <option th:value="ja">Japanese</option>
+                                <option th:value="ko">Korean</option>
+                                <option th:value="mr">Marathi</option>
+                                <option th:value="pt">Portuguese (Brazil)</option>
+                                <option th:value="ru">Russian</option>
+                                <option th:value="sp">Spanish</option>
+                                <option th:value="sv">Swedish</option>
+                                <option th:value="th">Thai</option>
+                                <option th:value="tr">Turkish</option>
+                                <option th:value="ur">Urdu</option>
+                                <option th:value="vi">Vietnamese</option>
+                            </select>
+
+                            <select class="form-select form-select-sm" id="destinationLanguage" name="destinationLanguage">
+                                <option value="">Translation language</option>
+                                <option th:value="en">English</option>
+                                <option th:value="zh">Chinese (Simplified)</option>
+                                <option th:value="zh-TW">Chinese (Traditional)</option>
+                                <option th:value="fr">French</option>
+                                <option th:value="de">German</option>
+                                <option th:value="el">Greek</option>
+                                <option th:value="hi">Hindi</option>
+                                <option th:value="it">Italian</option>
+                                <option th:value="ja">Japanese</option>
+                                <option th:value="ko">Korean</option>
+                                <option th:value="mr">Marathi</option>
+                                <option th:value="pt">Portuguese (Brazil)</option>
+                                <option th:value="ru">Russian</option>
+                                <option th:value="sp">Spanish</option>
+                                <option th:value="sv">Swedish</option>
+                                <option th:value="th">Thai</option>
+                                <option th:value="tr">Turkish</option>
+                                <option th:value="ur">Urdu</option>
+                                <option th:value="vi">Vietnamese</option>
+                            </select>
+                                <input type="hidden" th:name="name" th:value="${file.name}" />
+                                <button type="submit" class="btn btn-primary">Translate</button>
+                    </form>
+                </td>
+                    <td>
+                        <a th:href="@{'/files/analyze/' + ${file.name}}" th:fileName="${file.name}" id="btnUpgrade1"
+                           class="fa-solid fa-list"></a>
+                    </td>
+                <td>
+                    <a th:href="@{'/files/braille/' + ${file.name}}" th:fileName="${file.name}" id="btnUpgrade2"
+                       class="fa-solid fa-braille icon-dark"></a>
+                </td>
+                <td>
+                    <a th:href="@{'/files/delete/' + ${file.name}}" th:fileName="${file.name}" id="btnUpgrade"
+                       class="fa-regular fa-trash-can icon-dark btn-delete"></a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div th:unless="${files.size() > 0}">
+        <span> No files found!</span>
+    </div>
+        </div> <!-- End of table column -->
+    </div> <!-- End of Bootstrap row -->
+
+    </div>
+
+<div class="modal fade text-center" id="confirmModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <span id="confirmText"></span>
+            </div>
+
+            <div class="modal-footer">
+                <a type="button" id="yesBtn" class="btn btn-danger">Yes</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div th:replace="fragments/footer :: footer"></div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+      $(".btn-delete").on("click", function (e) {
+        e.preventDefault();
+        link = $(this);
+
+        fileName = link.attr("fileName");
+        $("#yesBtn").attr("href", link.attr("href"));
+        $("#confirmText").html("Do you want to delete the File: \<strong\>" + fileName + "\<\/strong\>?");
+        $("#confirmModal").modal();
+      });
+    });
+  </script>
+
+
+</body>
+
+</html>

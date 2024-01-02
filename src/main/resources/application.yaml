@@ -1,0 +1,31 @@
+server:
+    port:8081
+
+management:
+    server:
+        port: 9000
+    endpoints:
+        web:
+            exposure:
+                include: "*"
+    info:
+        git:
+            mode: full
+
+endpoints:
+    enabled: false
+
+spring:
+    servlet:
+        multipart:
+            max-file-size: 2MB
+            max-request-size: 2MB
+jasypt:
+    encryptor:
+        password: 'mleditions'
+
+clients:
+    S3BucketAccessKey: ENC(KSUXidv3N1IL0yUyufPQBUsbuHn5LTZ2bK8taVAa58M=)
+    S3SecretKey: ENC(jj9bpsFgaP8oB7RmJTJkROdnrQRJSicYVSNmh7d0gWEpXMPG7/akcdgBXW4k3UdO4lT3I5aVTno=)
+    S3BucketName: vinavbooksbucket
+    S3UploadPath: ./uploads
